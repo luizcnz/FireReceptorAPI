@@ -44,7 +44,7 @@ namespace FireReceptorAPI.Features.Alertas
         }
         public async Task<IEnumerable<AlertasDto>> ObtenerAlertaPorDispositivo(int DispositivoId)
         {
-            IEnumerable<AlertasDto> AlertByDevice = await alertasRepository.GetAlertasById(DispositivoId);
+            IEnumerable<AlertasDto> AlertByDevice = await alertasRepository.GetAlertasByDeviceId(DispositivoId);
 
             return AlertByDevice;
         }

@@ -12,9 +12,15 @@ namespace FireReceptorAPI.Features.Dispositivos
             this.dispositivosRepository = dispositivosRepository;
         }
 
+        public async Task<IEnumerable<DispositivosDto>> actualizarDispositivo(ActualizarDispositivo actDispositivo)
+        {
+            IEnumerable<DispositivosDto> actualizarDispositivo = await dispositivosRepository.UpdateDevice(actDispositivo);
+            return actualizarDispositivo;
+        }
+
         public async Task<IEnumerable<DispositivosDto>> crearDispositivo(CrearDispositivo crearDispositivo)
         {
-            IEnumerable<DispositivosDto> createDispositivo = await dispositivosRepository.CreateDispositivos(crearDispositivo);
+            IEnumerable<DispositivosDto> createDispositivo = await dispositivosRepository.CreateDevice(crearDispositivo);
             return createDispositivo;
         }
 

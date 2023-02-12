@@ -15,11 +15,6 @@ namespace FireReceptorAPI.Features.Alertas
             this.alertaAppService = alertasAppService;     
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CrearAlerta alerta)
-        {
-            return Ok(await alertaAppService.crearAlerta(alerta));
-        }
 
         [HttpGet("/api/Alertas")]
         public async Task<IActionResult> GetAllAlerts()
@@ -42,17 +37,23 @@ namespace FireReceptorAPI.Features.Alertas
             return Ok(await this.alertaAppService.ObtenerAlertasPorEstado());
         }
 
-        [HttpPost("/api/Alertas/Apagar")]
-        public async Task<IActionResult> TurnOff([FromBody] ApagarAlerta turnOff)
-        {
-            return Ok(await alertaAppService.apagarAlerta(turnOff));
-        }
-
         [HttpGet("/api/Alertas/DeviceId/{DispositivoId}")]
         public async Task<IActionResult> GetAlertByDevice(int DispositivoId)
         {
 
             return Ok(await this.alertaAppService.ObtenerAlertaPorDispositivo(DispositivoId));
+        }
+
+        [HttpPost("/api/Alertas")]
+        public async Task<IActionResult> Post([FromBody] CrearAlerta alerta)
+        {
+            return Ok(await alertaAppService.crearAlerta(alerta));
+        }
+
+        [HttpPost("/api/Alertas/Apagar")]
+        public async Task<IActionResult> TurnOff([FromBody] ApagarAlerta turnOff)
+        {
+            return Ok(await alertaAppService.apagarAlerta(turnOff));
         }
     }
 }

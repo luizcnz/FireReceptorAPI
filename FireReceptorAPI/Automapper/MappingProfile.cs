@@ -10,7 +10,7 @@ namespace FireReceptorAPI.Automapper
         {
             CreateMap<AlertasModel, AlertasDto>();
             CreateMap<DispositivosModel, DispositivosDto>();
-            CreateMap<RespuestasModel, RespuestasDto>();
+            CreateMap<UbicacionModel, UbicacionDto>();
         }
     }
 }

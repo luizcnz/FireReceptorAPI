@@ -15,7 +15,7 @@ namespace FireReceptorAPI.Repositories
             this.mapper = mapper;
         }
 
-        public async Task<IEnumerable<DispositivosDto>> CreateDispositivos(CrearDispositivo creardispositivo)
+        public async Task<IEnumerable<DispositivosDto>> CreateDevice(CrearDispositivo creardispositivo)
         {
             string procedureName = "dbo.CreateDevice";
             var result = await fireContext.Dispositivos
@@ -24,6 +24,21 @@ namespace FireReceptorAPI.Repositories
                 , creardispositivo.codigo
                 , creardispositivo.ubicacion_id
                 , creardispositivo.estado)
+                .ToListAsync();
+            fireContext.SaveChanges();
+            return mapper.Map<IEnumerable<DispositivosDto>>(result);
+        }
+
+        public async Task<IEnumerable<DispositivosDto>> UpdateDevice(ActualizarDispositivo actdispositivo)
+        {
+            string procedureName = "dbo.UpdateDevice";
+            var result = await fireContext.Dispositivos
+                .FromSqlRaw("exec {0} @dispositivoId = {1}, @codDispositivo = {2}, @idUbicacion = {3}, @estadoDispositivo = {4}"
+                , procedureName
+                , actdispositivo.Id
+                , actdispositivo.codigo
+                , actdispositivo.ubicacion_id
+                , actdispositivo.estado)
                 .ToListAsync();
             fireContext.SaveChanges();
             return mapper.Map<IEnumerable<DispositivosDto>>(result);

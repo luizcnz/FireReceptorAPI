@@ -19,8 +19,8 @@
         public bool alerta_fuego { get; set; }
         public bool alerta_humo { get; set; }
         public bool alerta_calor { get; set; }
-        public int temperatura { get; set; }
-        public DateTime? fecha_creacion { get; set; }
+        public bool temperatura { get; set; }
+
     }
 
     public class ApagarAlerta

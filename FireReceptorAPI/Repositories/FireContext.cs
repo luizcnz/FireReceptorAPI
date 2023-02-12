@@ -13,7 +13,7 @@ namespace FireReceptorAPI.Repositories
 
         public DbSet<AlertasModel> Alertas { get; set; } = null!;
         public DbSet<DispositivosModel> Dispositivos { get; set; } = null!;
-        public DbSet<RespuestasModel> Respuestas { get; set; } = null!;
+        public DbSet<UbicacionModel> Ubicaciones { get; set; } = null!;
         
     }
 }

@@ -17,6 +17,7 @@ namespace FireReceptorAPI.Repositories
 
         public async Task<IEnumerable<AlertasDto>> CreateAlert(CrearAlerta crearAlerta)
         {
+            DateTime fecha_creacion = DateTime.Now;
             string procedureName = "dbo.CreateAlerta";
             var result = await fireContext.Alertas
                 .FromSqlRaw("exec {0} @Dispositivo = {1}, @Fuego = {2}, @Humo = {3}, @Calor = {4}, @Temperatura = {5},  @Creado = {6}"
@@ -26,7 +27,7 @@ namespace FireReceptorAPI.Repositories
                 , crearAlerta.alerta_humo
                 , crearAlerta.alerta_calor
                 , crearAlerta.temperatura
-                , crearAlerta.fecha_creacion)
+                , fecha_creacion)
                 .ToListAsync();
             fireContext.SaveChanges();
             return mapper.Map<IEnumerable<AlertasDto>>(result);
@@ -81,7 +82,7 @@ namespace FireReceptorAPI.Repositories
         public async Task<IEnumerable<AlertasDto>> GetAlertasByDeviceId(int DeviceId)
         {
             string procedureName = "dbo.GetAlertasByDeviceId";
-            var result = await fireContext.Alertas.FromSqlRaw("exec {0} @DeviceId = {1}", procedureName, DeviceId).ToListAsync();
+            var result = await fireContext.Alertas.FromSqlRaw("exec {0} @deviceId = {1}", procedureName, DeviceId).ToListAsync();
             if (result.Count == 0)
             {
                 return null;

@@ -15,10 +15,16 @@ namespace FireReceptorAPI.Features.Dispositivos
             this.dispositivosAppService = dispositivosAppService;
         }
 
-        [HttpPost]
+        [HttpPost("/api/Dispositivos")]
         public async Task<IActionResult> Post([FromBody] CrearDispositivo dispositivo)
         {
             return Ok(await dispositivosAppService.crearDispositivo(dispositivo));
+        }
+
+        [HttpPost("/api/Dispositivos/Actualizar")]
+        public async Task<IActionResult> UpdateDevice([FromBody] ActualizarDispositivo dispositivo)
+        {
+            return Ok(await dispositivosAppService.actualizarDispositivo(dispositivo));
         }
 
         [HttpGet("/api/Dispositivos")]
@@ -27,5 +33,12 @@ namespace FireReceptorAPI.Features.Dispositivos
 
             return Ok(await this.dispositivosAppService.obtenerDispositivos());
         }
+
+        //[HttpGet("/api/Dispositivos/Id")]
+        //public async Task<IActionResult> GetDeviceById()
+        //{
+
+        //    return Ok(await this.dispositivosAppService.obtenerDispositivos());
+        //}
     }
 }

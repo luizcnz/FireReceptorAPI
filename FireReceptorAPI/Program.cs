@@ -2,10 +2,10 @@ using AutoMapper;
 using FireReceptorAPI.Automapper;
 using FireReceptorAPI.Features.Alertas;
 using FireReceptorAPI.Features.Dispositivos;
-using FireReceptorAPI.Features.Respuestas;
+using FireReceptorAPI.Features.Ubicaciones;
 using FireReceptorAPI.Interfaces.Alertas;
 using FireReceptorAPI.Interfaces.Dispositivos;
-using FireReceptorAPI.Interfaces.Respuestas;
+using FireReceptorAPI.Interfaces.Ubicaciones;
 using FireReceptorAPI.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,8 +24,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IAlertasAppService, AlertasAppService>()
                 .AddScoped<IAlertasRepository, AlertaRepository>()
-                .AddScoped<IRespuestasAppService, RespuestaAppService>()
-                .AddScoped<IRespuestasRepository, RespuestasRepository>()
+                .AddScoped<IUbicacionesAppService, UbicacionesAppService>()
+                .AddScoped<IUbicacionesRepository, UbicacionesRepository>()
                 .AddScoped<IDispositivosAppService, DispositivosAppService>()
                 .AddScoped<IDispositivosRepository, DispositivosRepository>()
                 .AddSingleton(mapper)
